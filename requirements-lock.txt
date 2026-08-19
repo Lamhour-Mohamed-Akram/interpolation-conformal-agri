@@ -1,0 +1,11 @@
+# Exact environment used to generate ALL published numerical outputs under
+# results/ — core experiments, tables, figures, and the deep-model case study
+# (LSTM/MC-dropout/quantile training included) — on Python 3.12.13, macOS
+# arm64. Install with:
+#   pip install -r requirements-lock.txt
+numpy==2.5.2
+pandas==3.0.5
+scipy==1.18.0
+scikit-learn==1.9.0
+matplotlib==3.11.1
+tensorflow==2.21.0

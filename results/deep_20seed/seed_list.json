@@ -1,0 +1,36 @@
+{
+  "seeds": [
+    42,
+    123,
+    2024,
+    7,
+    99,
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "convention": "original 5-seed set {42,123,2024,7,99} preserved; 15 additional seeds are the smallest distinct non-negative integers not already used (0-6, 8-15)",
+  "framework": "TensorFlow 2.20.0 (CPU), tf.keras.utils.set_random_seed(seed) + np.random.seed(seed) per run",
+  "variants": {
+    "deterministic": "dropout 0.2 (training only)",
+    "bayesian": "dropout 0.15 kept active at inference"
+  },
+  "mc_passes": 50,
+  "epochs_max": 80,
+  "batch": 128,
+  "early_stopping": "val_loss patience 15, restore best; ReduceLROnPlateau factor 0.5 patience 5",
+  "sd_convention": "sample SD, ddof=1 (changed from ddof=0 used for the 5-seed run)",
+  "hardware": "Apple Silicon CPU (Darwin 25.5.0)"
+}

@@ -1,0 +1,9 @@
+base,horizon_h,horizon_steps,n_test,cov_immediate,cov_observable,difference_pp,n_feedback_consumed,first_feedback_index,frac_before_any_feedback
+persistence,6,72,897,91.8,90.3,1.4,825,13,0.014
+ridge,6,72,897,90.0,87.8,2.1,825,13,0.014
+persistence,12,144,833,91.6,83.4,8.2,689,21,0.025
+ridge,12,144,833,89.7,82.8,6.8,689,21,0.025
+persistence,24,288,686,90.7,94.8,-4.1,398,18,0.026
+ridge,24,288,686,90.5,90.5,0.0,398,18,0.026
+persistence,48,576,608,93.8,62.5,31.2,228,296,0.487
+ridge,48,576,608,91.1,99.7,-8.6,228,296,0.487

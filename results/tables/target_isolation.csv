@@ -1,0 +1,5 @@
+horizon_h,n_train_leaky,n_train_isolated,n_leaking_train_seq,picp_leaky,picp_isolated,rmse_leaky,rmse_isolated
+6,2688,2616,72,98.0,98.4,1.8,1.7
+12,2497,2353,144,99.8,99.9,1.7,1.7
+24,2054,1801,253,100.0,100.0,3.6,3.0
+48,1824,1260,564,78.0,99.7,5.6,3.9

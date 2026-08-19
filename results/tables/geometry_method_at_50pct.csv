@@ -1,0 +1,4 @@
+geometry,picp_linear,err_linear_pp,err_ffill_pp,width_linear,width_spline
+single,79.9,10.1,10.0,143,1829
+distributed,82.3,7.7,6.3,151,1712
+isolated,85.5,4.5,1.1,161,219

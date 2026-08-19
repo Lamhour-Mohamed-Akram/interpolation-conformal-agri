@@ -1,0 +1,12 @@
+# SHA-256 of the files distributed in this directory.
+769c74eff348150fa83de0d78ef81c808ac93db53291439be94bd9fc60c1cda9  data.csv.gz
+fffeca844bcc0f948b6d24a9cc65bb647e301d53c6f24a2e7520ffbe1f79d6c3  mendeley_soil_data_incl_rain_v3.csv
+07273cc206c877e2dfd906875ebff485f11aacff65777d802cd86fc37e9f7ec0  uscrn_fairhope_AL_2021.txt
+
+# SHA-256 of the exact decompressed Morocco file used in the experiments.
+# Recovered with:  gunzip -k data.csv.gz
+9d5e88addb3721903c30835dfab3bea4bf41fe9c427d90795b36ad5c290298e7  data.csv
+
+# SHA-256 of the Iraq record, which is NOT redistributed here.
+# Download it from the source in data/README.md and place it in this directory.
+b6485b4322662ec6beeb986bf4adf2dfccfd3c3cf2e0bbe514439d3b517e8a82  iraq_IoTProcessed_Data.csv

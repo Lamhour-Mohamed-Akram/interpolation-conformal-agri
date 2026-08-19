@@ -1,0 +1,9 @@
+method,n_events_min,n_events_max,miss_min,miss_max,fa_min,fa_max,cost_r50_min,cost_r50_max
+aci_ens_sigma,7003,7003,0.0,0.0,0.0,0.0,1.0,1.0
+aci_mc_sigma,7003,7003,0.0,0.0,0.0,0.0,1.0,1.0
+aci_persistence,7003,7003,0.0,0.0,0.0,0.0,1.0,1.0
+enbpi_ridge,7003,7003,0.0,0.0,0.0,0.0,1.0,1.0
+mc_gauss,7003,7003,0.0,0.0,0.0,0.0,1.0,1.0
+never_irrigate,7003,7003,1.0,1.0,0.0,0.0,50.0,50.0
+oracle,7003,7003,0.0,0.0,0.0,0.0,1.0,1.0
+scp_persistence,7003,7003,0.0,0.0,0.0,0.0,1.0,1.0

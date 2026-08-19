@@ -1,0 +1,10 @@
+{
+ "tau_percent": 95.0,
+ "cost_ratios": [
+  5,
+  10,
+  20,
+  50
+ ],
+ "enbpi_B": 30
+}

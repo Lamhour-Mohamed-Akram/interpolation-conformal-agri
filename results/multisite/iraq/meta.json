@@ -1,0 +1,43 @@
+{
+  "site": "iraq",
+  "rows_raw": 28682,
+  "resample": "5min",
+  "time_range": [
+    "2023-11-27 06:25:00",
+    "2024-03-28 05:20:00"
+  ],
+  "resampled_timestamps": 35124,
+  "features": [
+    "tempreature",
+    "humidity",
+    "water_level"
+  ],
+  "target": "water_level",
+  "train/val/test": [
+    21051,
+    7001,
+    7003
+  ],
+  "seeds": [
+    42,
+    123,
+    2024,
+    7,
+    99,
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+  ]
+}

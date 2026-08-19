@@ -1,0 +1,9 @@
+site,model,horizon,n_seeds,rmse_mean,rmse_sd,r2_mean,converged
+morocco,bayesian,12h,20,15.2638,1.8958,-0.5668,True
+morocco,bayesian,24h,20,16.3068,1.9648,-0.8266,True
+morocco,bayesian,48h,20,18.0916,1.5322,-1.2765,True
+morocco,bayesian,6h,20,14.0162,1.5066,-0.3042,True
+morocco,deterministic,12h,20,14.6746,1.6025,-0.4434,True
+morocco,deterministic,24h,20,15.8006,1.7203,-0.7107,True
+morocco,deterministic,48h,20,17.6377,1.6341,-1.1666,True
+morocco,deterministic,6h,20,13.5997,1.9476,-0.2381,True

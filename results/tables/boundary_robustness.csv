@@ -1,0 +1,10 @@
+site,split,horizon_h,cov_aci_immediate,cov_aci_observable,immediate_minus_observable_pp,n_leaking_train_seq,picp_leaky,picp_isolated
+Morocco,0.60/0.20,48,91.1,99.7,-8.6,564,78.0,99.7
+Morocco,0.50/0.25,48,90.5,90.4,0.1,576,89.2,2.5
+Morocco,0.70/0.15,48,91.9,99.8,-7.9,515,98.2,99.8
+Iraq,0.60/0.20,48,89.8,88.0,1.8,528,92.4,91.6
+Iraq,0.50/0.25,48,89.8,84.2,5.6,576,98.1,96.9
+Iraq,0.70/0.15,48,89.7,85.7,4.0,576,94.3,94.2
+Johannesburg,0.60/0.20,48,89.9,89.9,0.1,48,89.7,89.5
+Johannesburg,0.50/0.25,48,90.0,89.9,0.0,48,90.2,89.8
+Johannesburg,0.70/0.15,48,89.9,89.9,0.0,48,90.6,90.2

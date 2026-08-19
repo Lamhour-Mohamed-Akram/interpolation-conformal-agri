@@ -1,0 +1,42 @@
+{
+  "raw_time_range": [
+    "2022-04-18 12:50:00",
+    "2022-05-22 19:55:00"
+  ],
+  "resampled_timestamps": 9878,
+  "sequence_length": 24,
+  "time_horizons_steps": {
+    "6h": 72,
+    "12h": 144,
+    "24h": 288,
+    "48h": 576
+  },
+  "seeds": [
+    42,
+    123,
+    2024,
+    7,
+    99,
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "mc_samples": 50,
+  "train_samples": 5558,
+  "val_samples": 1837,
+  "test_samples": 1838,
+  "split_policy": "time_split_before_scaling_and_windowing",
+  "persistence_units": "raw_percent"
+}

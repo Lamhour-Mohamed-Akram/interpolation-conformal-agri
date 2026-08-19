@@ -1,0 +1,2 @@
+total_rows,n_days,dense_window,dense_days,dense_rows,dense_share_pct,peak_days,peak_mean_rows_per_day,peak_median_rows_per_day,zero_row_dates
+947682,35,2022-04-28..2022-05-10,13,921660,97.3,10,83686,85333,2022-05-01;2022-05-12;2022-05-13;2022-05-14;2022-05-15

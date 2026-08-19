@@ -1,0 +1,5 @@
+dataset,horizon_h,n_train,n_cal,n_test,scp_picp,scp_mpiw,aci_picp,aci_mpiw,source
+Morocco,6,2616,824,897,99.6,10.0,90.3,5.7,cap_sensitivity.csv (cap=30)
+Morocco,12,2353,688,833,100.0,14.0,83.4,6.1,cap_sensitivity.csv (cap=30)
+Morocco,24,1801,653,686,97.4,14.0,94.8,37.6,cap_sensitivity.csv (cap=30)
+Morocco,48,1260,517,608,62.5,14.0,62.5,29.0,cap_sensitivity.csv (cap=30)

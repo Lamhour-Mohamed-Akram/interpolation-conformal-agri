@@ -1,0 +1,13 @@
+{
+ "tau_percent": 30.842117309570312,
+ "cost_ratios": [
+  5,
+  10,
+  20,
+  50
+ ],
+ "enbpi_B": 30,
+ "enbpi_base": "ridge",
+ "window": 500,
+ "gamma": 0.02
+}

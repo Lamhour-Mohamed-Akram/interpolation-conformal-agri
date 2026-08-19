@@ -1,0 +1,45 @@
+{
+  "site": "mendeley",
+  "rows_raw": 8761,
+  "resample": "1h",
+  "time_range": [
+    "2017-06-11 21:00:00",
+    "2018-06-09 21:00:00"
+  ],
+  "resampled_timestamps": 8713,
+  "features": [
+    "Humidity",
+    "Atmospheric_Temp",
+    "Soil_Temp",
+    "Soil_Moisture",
+    "Dew_Point"
+  ],
+  "target": "Soil_Moisture",
+  "train/val/test": [
+    5204,
+    1719,
+    1721
+  ],
+  "seeds": [
+    42,
+    123,
+    2024,
+    7,
+    99,
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+  ]
+}
