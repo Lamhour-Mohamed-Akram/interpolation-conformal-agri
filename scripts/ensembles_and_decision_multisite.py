@@ -31,6 +31,7 @@ from sklearn.linear_model import Ridge
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from conformal import conformal_quantile, aci as aci_shared    # noqa: E402
+from decision_sensitivity import sensitivity_rows, write_sensitivity   # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 HORIZONS = ["6h", "12h", "24h", "48h"]
@@ -257,6 +258,10 @@ def run_site(site: str) -> None:
             else:
                 d = decide(np.asarray(iv[0]))
             sim_rows.append((m, h, n_ev, d))
+
+    # ---- D'. threshold-percentile x penalty-ratio sensitivity of the same rule ----
+    sens_rows = sensitivity_rows(y_train, y_test, intervals90, sim_methods, HORIZONS)
+    write_sensitivity(OUT, sens_rows)
 
     # ---- output ----
     with open(OUT / "uq_extensions_results.csv", "w") as f:

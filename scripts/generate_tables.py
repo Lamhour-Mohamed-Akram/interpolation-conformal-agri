@@ -274,6 +274,53 @@ if exists(msr):
              .reset_index().round(4))
     write(agg, "deep_20seed_summary.csv")
 
+# ------------------------------------------- decision sensitivity grid ----
+for label, path in (("morocco", RES / "naive_pipeline" / "uq_extensions" / "decision_sensitivity.csv"),
+                    ("iraq", RES / "multisite" / "iraq" / "uq_extensions" / "decision_sensitivity.csv"),
+                    ("johannesburg", RES / "multisite" / "mendeley" / "uq_extensions" / "decision_sensitivity.csv")):
+    if path.exists():
+        ds = pd.read_csv(path)
+        cost_cols = [c for c in ds.columns if c.startswith("cost_r")]
+        agg = (ds.groupby(["threshold_pct", "method"])
+                 .agg(n_events_min=("n_events", "min"), n_events_max=("n_events", "max"),
+                      **{f"{c}_min": (c, "min") for c in cost_cols},
+                      **{f"{c}_max": (c, "max") for c in cost_cols})
+                 .reset_index().round(4))
+        write(agg, f"decision_sensitivity_{label}.csv")
+
+# ------------------------------------------------ paired inference ----------
+sig = RES / "significance"
+if exists(sig / "injection_vs_gapaware.csv"):
+    g = pd.read_csv(sig / "injection_vs_gapaware.csv")
+    g = g[g.geom == "distributed"]
+    rows = []
+    for frac in sorted(g.frac.unique()):
+        row = {"fraction_pct": int(round(frac * 100))}
+        for meth in ("linear", "ffill", "spline"):
+            r = g[(g.method == meth) & (g.frac == frac)].iloc[0]
+            row[f"{meth}_median_diff_pp"] = fmt1(r.median_diff_pp)
+            row[f"{meth}_ci95_pp"] = f"[{r.ci_lo_pp:.1f}, {r.ci_hi_pp:.1f}]"
+            row[f"{meth}_holm_p"] = f"{r.holm_p:.3g}"
+        rows.append(row)
+    write(pd.DataFrame(rows), "paired_inference_distributed.csv")
+if exists(sig / "defects_paired.csv"):
+    write(pd.read_csv(sig / "defects_paired.csv").round(6), "paired_inference_defects.csv")
+
+# ------------------------------------ trained-forecaster injection --------
+deep = RES / "controlled_injection_deep" / "injection_matrix_deep.csv"
+if exists(deep):
+    d = pd.read_csv(deep)
+    d["family"] = np.where(d.model == "ridge", "ridge", "lstm")
+    agg = (d.groupby(["family", "geom", "method", "frac"])
+             .agg(picp_mean=("picp", "mean"), mpiw_mean=("mpiw", "mean"),
+                  calib_err_pp=("calib_err", lambda v: 100 * v.mean()),
+                  n_cal_mean=("n_cal", "mean"), n_nan=("picp", lambda v: int(v.isna().sum())))
+             .reset_index().round(4))
+    write(agg, "controlled_injection_deep_summary.csv")
+    pa = RES / "controlled_injection_deep" / "point_accuracy_deep.csv"
+    if pa.exists():
+        write(pd.read_csv(pa).round(4), "controlled_injection_deep_point_accuracy.csv")
+
 print(f"\nwrote {len(written)} tables -> {OUT.relative_to(ROOT)}")
 for w in written:
     print("  ", w)

@@ -1,0 +1,13 @@
+experiment,base,horizon_h,n_test,cov_arm1,cov_arm2,arm1,arm2,diff_pp,n_arm1_only,n_arm2_only,mcnemar_p,block_len,blockboot_ci_lo_pp,blockboot_ci_hi_pp
+target_boundary_leakage,ridge,6,897,97.993311,98.439242,leaky,isolated,-0.445931,0,4,0.125,72,-1.003344,0.0
+premature_aci_feedback,persistence,6,897,91.750279,90.301003,immediate,observable,1.449275,57,44,0.2323,72,-5.462653,9.587514
+premature_aci_feedback,ridge,6,897,89.966555,87.848384,immediate,observable,2.118172,52,33,0.050251,72,-3.455964,8.584169
+target_boundary_leakage,ridge,12,833,99.759904,99.879952,leaky,isolated,-0.120048,1,2,1.0,144,-0.480192,0.120048
+premature_aci_feedback,persistence,12,833,91.596639,83.433373,immediate,observable,8.163265,93,25,0.0,144,-3.721489,23.772509
+premature_aci_feedback,ridge,12,833,89.67587,82.833133,immediate,observable,6.842737,92,35,0.0,144,-5.522209,22.569028
+target_boundary_leakage,ridge,24,685,100.0,100.0,leaky,isolated,0.0,0,0,1.0,137,0.0,0.0
+premature_aci_feedback,persistence,24,686,90.670554,94.752187,immediate,observable,-4.081633,23,51,0.001516,137,-13.119534,5.393586
+premature_aci_feedback,ridge,24,686,90.524781,90.524781,immediate,observable,0.0,51,51,1.0,137,-13.119534,16.767493
+target_boundary_leakage,ridge,48,608,77.960526,99.671053,leaky,isolated,-21.710526,0,132,0.0,121,-45.065789,-1.973684
+premature_aci_feedback,persistence,48,608,93.75,62.5,immediate,observable,31.25,202,12,0.0,121,0.0,66.776316
+premature_aci_feedback,ridge,48,608,91.118421,99.671053,immediate,observable,-8.552632,0,52,0.0,121,-14.638158,-3.947368

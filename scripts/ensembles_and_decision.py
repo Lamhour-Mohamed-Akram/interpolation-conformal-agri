@@ -341,6 +341,11 @@ for h_i, h in enumerate(HORIZONS):
 
 print(f"D. decision sim done (tau = {TAU:.1f}%)")
 
+# ---- D'. threshold-percentile x penalty-ratio sensitivity of the same rule ----
+from decision_sensitivity import sensitivity_rows, write_sensitivity   # noqa: E402
+sens_rows = sensitivity_rows(y_train, y_test, intervals90, sim_methods, HORIZONS)
+print(f"D'. decision sensitivity done ({len(sens_rows)} rows)")
+
 # ------------------------------------------------------------------ output --
 
 with open(OUT / "uq_extensions_results.csv", "w") as f:
@@ -358,6 +363,8 @@ with open(OUT / "decision_sim.csv", "w") as f:
     f.write("method,horizon,n_events," + ",".join(keys) + "\n")
     for m, h, n_ev, d in sim_rows:
         f.write(f"{m},{h},{n_ev}," + ",".join(f"{d[k]:.4f}" for k in keys) + "\n")
+
+write_sensitivity(OUT, sens_rows)
 
 with open(OUT / "uq_extensions_meta.json", "w") as f:
     json.dump({"tau_percent": TAU, "cost_ratios": COST_RATIOS, "enbpi_B": B,

@@ -86,6 +86,15 @@ python scripts/boundary_robustness.py    # both defects across sites and splits
 python scripts/same_model_shift.py       # naive vs clean, same base model
 python scripts/cap_sensitivity.py        # sensitivity to the interpolation cap
 python scripts/clean_protocol.py         # cross-site evaluation under the protocol
+python scripts/significance_tests.py     # paired tests / CIs for every reported difference
+```
+
+Trained-forecaster replication of the injection experiment (ridge and a
+five-seed LSTM base on the same gap placements; needs `tensorflow`, ~10 min
+on CPU; its outputs are already provided under `results/`):
+
+```bash
+python scripts/controlled_injection_deep.py
 ```
 
 Optional deep-model case study (needs `tensorflow`; its outputs are already
@@ -99,7 +108,7 @@ python scripts/train_deep_models_multisite.py        # 20 seeds, other sites
 python scripts/evaluate_uq.py                        # coverage of every UQ method
 python scripts/quantile_regression.py                # CQR family
 python scripts/ensembles_and_decision.py             # ensembles, EnbPI, cost-loss
-python scripts/ensembles_and_decision_multisite.py
+python scripts/ensembles_and_decision_multisite.py   #   (+ threshold x penalty sensitivity grid)
 python scripts/aggregate_seed_results.py             # per-seed metric tables
 ```
 

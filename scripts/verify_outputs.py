@@ -91,6 +91,10 @@ REQUIRED = [
     "clean_protocol/clean_cross_site.csv",
     "deep_20seed/seed_list.json",
     "deep_20seed/morocco_seed_results.csv",
+    "significance/injection_vs_gapaware.csv",
+    "significance/defects_paired.csv",
+    "multisite/mendeley/uq_extensions/decision_sensitivity.csv",
+    "controlled_injection_deep/injection_matrix_deep.csv",
 ]
 for rel in REQUIRED:
     check(f"result present: {rel}", (RES / rel).exists())
@@ -408,6 +412,96 @@ if all(f.exists() for f in pers_files):
 else:
     print("(persistence array check skipped: working arrays not present — "
           "regenerate with train_deep_models.py --recompute-outputs)")
+
+# ------------------------------------------- decision sensitivity grid ----
+# The sensitivity grid is computed on the same intervals as the headline
+# decision table, so its 25th-percentile / r=50 cells must reproduce
+# decision_sim.csv exactly.
+for label, base in (("morocco", RES / "naive_pipeline" / "uq_extensions"),
+                    ("iraq", RES / "multisite" / "iraq" / "uq_extensions"),
+                    ("johannesburg", RES / "multisite" / "mendeley" / "uq_extensions")):
+    ps, pd_ = base / "decision_sensitivity.csv", base / "decision_sim.csv"
+    if ps.exists() and pd_.exists():
+        sens = pd.read_csv(ps)
+        head = pd.read_csv(pd_)
+        need_cols(sens, ["threshold_pct", "tau", "method", "horizon", "n_events",
+                         "miss_rate", "fa_rate", "cost_r50"], f"decision_sensitivity_{label}")
+        s25 = sens[sens.threshold_pct == 25].set_index(["method", "horizon"])
+        h = head.set_index(["method", "horizon"])
+        common = h.index.intersection(s25.index)
+        check(f"sensitivity ({label}): headline methods present at the 25th percentile",
+              len(common) == len(h.index))
+        check(f"sensitivity ({label}): 25th-pct r=50 cells reproduce decision_sim.csv",
+              bool(np.allclose(s25.loc[common, "cost_r50"], h.loc[common, "cost_r50"], atol=1e-4))
+              and bool(np.allclose(s25.loc[common, "miss_rate"], h.loc[common, "miss_rate"], atol=1e-4))
+              and bool((s25.loc[common, "n_events"] == h.loc[common, "n_events"]).all()))
+        check(f"sensitivity ({label}): event count non-decreasing in the threshold percentile",
+              bool(sens[sens.method == "oracle"].sort_values(["horizon", "threshold_pct"])
+                   .groupby("horizon").n_events.apply(lambda v: (np.diff(v) >= 0).all()).all()))
+        check(f"sensitivity ({label}): always-irrigate costs exactly 1",
+              bool(np.allclose(sens[sens.method == "always_irrigate"].cost_r50, 1.0)))
+
+# ----------------------------------------------------- paired inference ----
+sig = RES / "significance"
+if sig.exists():
+    for name in ("injection_vs_gapaware.csv", "injection_vs_baseline.csv",
+                 "injection_per_horizon_50pct.csv", "uscrn_paired.csv", "defects_paired.csv"):
+        check(f"significance file present: {name}", (sig / name).exists())
+    for name in ("injection_vs_gapaware.csv", "injection_vs_baseline.csv",
+                 "injection_per_horizon_50pct.csv", "uscrn_paired.csv"):
+        q = sig / name
+        if q.exists():
+            t = pd.read_csv(q)
+            need_cols(t, ["n", "median_diff_pp", "ci_lo_pp", "ci_hi_pp", "wilcoxon_p", "holm_p"], name)
+            check(f"{name}: 20 placements per test", bool((t.n == 20).all()))
+            check(f"{name}: p-values in [0,1] and Holm >= raw",
+                  bool(((t.wilcoxon_p >= 0) & (t.wilcoxon_p <= 1)).all())
+                  and bool((t.holm_p >= t.wilcoxon_p - 1e-12).all()) and bool((t.holm_p <= 1).all()))
+            check(f"{name}: bootstrap interval ordered", bool((t.ci_lo_pp <= t.ci_hi_pp).all()))
+    q = sig / "defects_paired.csv"
+    if q.exists():
+        t = pd.read_csv(q)
+        need_cols(t, ["experiment", "base", "horizon_h", "n_test", "cov_arm1", "cov_arm2",
+                      "diff_pp", "n_arm1_only", "n_arm2_only", "mcnemar_p",
+                      "blockboot_ci_lo_pp", "blockboot_ci_hi_pp"], "defects_paired")
+        check("defects_paired: diff equals arm1 - arm2",
+              bool(np.allclose(t.diff_pp, t.cov_arm1 - t.cov_arm2)))
+        check("defects_paired: discordant counts never exceed the stream",
+              bool((t.n_arm1_only + t.n_arm2_only <= t.n_test).all()))
+        aci_pub = RES / "delayed_aci" / "aci_feedback.csv"
+        if aci_pub.exists():
+            a = pd.read_csv(aci_pub).set_index(["base", "horizon_h"])
+            tt = t[t.experiment == "premature_aci_feedback"].set_index(["base", "horizon_h"])
+            check("defects_paired: ACI arm coverages equal the published ACI coverages",
+                  bool(np.allclose(tt.cov_arm1 / 100, a.loc[tt.index, "cov_immediate"], atol=1e-9))
+                  and bool(np.allclose(tt.cov_arm2 / 100, a.loc[tt.index, "cov_delayed"], atol=1e-9)))
+
+# ------------------------------------ trained-forecaster injection --------
+p = RES / "controlled_injection_deep" / "injection_matrix_deep.csv"
+if p.exists():
+    d = pd.read_csv(p)
+    need_cols(d, ["geom", "method", "frac", "seed", "model", "h", "n_cal", "picp", "mpiw",
+                  "calib_err", "requested_n", "realized_n"], "injection_matrix_deep")
+    n_expected = (d.geom.nunique() * d.method.nunique() * d.frac.nunique()
+                  * d.h.nunique() * d.seed.nunique() * d.model.nunique())
+    check("deep injection grid complete", len(d) == n_expected, f"{len(d)} vs {n_expected}")
+    check("deep injection: ridge + 5 LSTM seeds",
+          d.model.nunique() == 6 and (d.model == "ridge").any())
+    check("deep injection: realized count equals requested count in every row",
+          bool((d.realized_n == d.requested_n).all()))
+    filled = d[d.method != "none"]
+    check("deep injection: filled arms have no NaN",
+          not filled[["picp", "mpiw", "calib_err"]].isna().any().any())
+    check("deep injection: PICP in [0,1] where defined",
+          bool(((d.picp.dropna() >= 0) & (d.picp.dropna() <= 1)).all()))
+    check("deep injection: calibration counts never exceed the block",
+          bool((d.n_cal <= d.n_cal.max()).all()) and bool((d.n_cal >= 0).all()))
+    pp = RES / "controlled_injection" / "injection_matrix.csv"
+    if pp.exists():
+        m0 = pd.read_csv(pp).groupby(["geom", "frac", "seed"]).realized_n.first()
+        m1 = d.groupby(["geom", "frac", "seed"]).realized_n.first()
+        check("deep injection: same injected masks (realized counts) as the persistence experiment",
+              bool((m0.loc[m1.index] == m1).all()))
 
 # ------------------------------------------------------------- checksums --
 EXTERNAL = {"iraq_IoTProcessed_Data.csv"}
