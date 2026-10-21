@@ -1,0 +1,50 @@
+cff-version: 1.2.0
+message: "If you use this code or data, please cite the article below."
+title: "interpolation-conformal-agri: reproducibility code for the leakage-free multi-horizon evaluation protocol"
+authors:
+  - family-names: Lamhour
+    given-names: Mohamed Akram
+    orcid: "https://orcid.org/0009-0008-7482-0809"
+  - family-names: Msalek
+    given-names: Mohamed
+    orcid: "https://orcid.org/0009-0001-8265-2381"
+  - family-names: Kasbouya
+    given-names: Mohamed
+  - family-names: Rachdi
+    given-names: Mohamed
+  - family-names: Mahjoubi
+    given-names: Khadija
+  - family-names: Ardchir
+    given-names: Soufiane
+    orcid: "https://orcid.org/0000-0002-4917-6512"
+  - family-names: Azzouazi
+    given-names: Mohamed
+    orcid: "https://orcid.org/0009-0007-9800-3806"
+repository-code: "https://github.com/Lamhour-Mohamed-Akram/interpolation-conformal-agri"
+license: MIT
+preferred-citation:
+  type: article
+  title: "Interpolation Confounds Conformal Calibration in Agricultural Sensor Forecasting: A Leakage-Free Multi-Horizon Evaluation Protocol"
+  authors:
+    - family-names: Lamhour
+      given-names: Mohamed Akram
+      orcid: "https://orcid.org/0009-0008-7482-0809"
+    - family-names: Msalek
+      given-names: Mohamed
+      orcid: "https://orcid.org/0009-0001-8265-2381"
+    - family-names: Kasbouya
+      given-names: Mohamed
+    - family-names: Rachdi
+      given-names: Mohamed
+    - family-names: Mahjoubi
+      given-names: Khadija
+    - family-names: Ardchir
+      given-names: Soufiane
+      orcid: "https://orcid.org/0000-0002-4917-6512"
+    - family-names: Azzouazi
+      given-names: Mohamed
+      orcid: "https://orcid.org/0009-0007-9800-3806"
+  journal: "IEEE Access"
+  year: 2026
+  doi: "10.1109/ACCESS.2026.3745551"
+  url: "https://doi.org/10.1109/ACCESS.2026.3745551"

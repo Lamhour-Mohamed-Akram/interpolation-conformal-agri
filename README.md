@@ -1,8 +1,11 @@
 # Interpolation Confounds Conformal Calibration in Agricultural Sensor Forecasting
 
+[![DOI](https://img.shields.io/badge/DOI-10.1109%2FACCESS.2026.3745551-blue)](https://doi.org/10.1109/ACCESS.2026.3745551)
+
 Code and data for *"Interpolation Confounds Conformal Calibration in
 Agricultural Sensor Forecasting: A Leakage-Free Multi-Horizon Evaluation
-Protocol"*.
+Protocol"*, published in *IEEE Access* (2026),
+doi:[10.1109/ACCESS.2026.3745551](https://doi.org/10.1109/ACCESS.2026.3745551).
 
 Sparse sensor records are routinely resampled onto a regular grid and
 interpolated without a cap before uncertainty methods are evaluated on them. In
@@ -158,10 +161,10 @@ M. A. Lamhour, M. Msalek, M. Kasbouya, M. Rachdi, K. Mahjoubi,
 S. Ardchir, and M. Azzouazi,
 "Interpolation Confounds Conformal Calibration in Agricultural Sensor Forecasting:
 A Leakage-Free Multi-Horizon Evaluation Protocol,"
-submitted to *IEEE Access*, 2026.
+*IEEE Access*, 2026, doi:10.1109/ACCESS.2026.3745551.
 
 ```bibtex
-@misc{lamhour2026interpolation,
+@article{lamhour2026interpolation,
   title={Interpolation Confounds Conformal Calibration in Agricultural Sensor Forecasting:
          A Leakage-Free Multi-Horizon Evaluation Protocol},
   author={Lamhour, Mohamed Akram and
@@ -171,18 +174,20 @@ submitted to *IEEE Access*, 2026.
           Mahjoubi, Khadija and
           Ardchir, Soufiane and
           Azzouazi, Mohamed},
+  journal={IEEE Access},
   year={2026},
-  note={Submitted to IEEE Access}
+  doi={10.1109/ACCESS.2026.3745551},
+  url={https://doi.org/10.1109/ACCESS.2026.3745551}
 }
 ```
 
-Once the paper is formally published, we will manually replace this with the
-final IEEE Access citation and DOI.
+The article is currently in IEEE Xplore Early Access. Volume and page numbers
+will be added here once IEEE assigns them to the final version.
 
 The prior deployment whose data and pipeline this study audits is
 M. A. Lamhour et al., "Multi-Seed XAI Validation for Reliable LSTM Irrigation
-Control in Greenhouse Environments," *IEEE Access*, vol. 14, pp. 120366–120387,
-2026, doi:10.1109/ACCESS.2026.3720462.
+Control," *IEEE Access*, vol. 14, pp. 120366–120387, 2026,
+doi:10.1109/ACCESS.2026.3720462.
 
 ## License
 
