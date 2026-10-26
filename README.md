@@ -169,7 +169,7 @@ A Leakage-Free Multi-Horizon Evaluation Protocol,"
          A Leakage-Free Multi-Horizon Evaluation Protocol},
   author={Lamhour, Mohamed Akram and
           Msalek, Mohamed and
-          Kasbouya, Mohamed and
+          Kasbouya, Mohammed and
           Rachdi, Mohamed and
           Mahjoubi, Khadija and
           Ardchir, Soufiane and
